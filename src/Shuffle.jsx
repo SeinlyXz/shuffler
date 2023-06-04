@@ -33,6 +33,9 @@ const Shuffler = () => {
         if (klm === 0 || jml === 0) {
             return ['ERROR: TIDAK BISA DIBAGI DENGAN 0'];
         }
+        if (klm > 1000 || jml > 1000) {
+            return ['ERROR: TIDAK BISA LEBIH DARI 1000'];
+        }
         const g = generateArray(jml);
         const div = Math.floor(jml / klm);
         const sisa = jml % klm;
