@@ -30,7 +30,9 @@ const Shuffler = () => {
         if (jml < klm) {
             return ['ERROR: TIDAK MUNGKIN DIBAGI KELOMPOK'];
         }
-
+        if (klm === 0) {
+            return ['ERROR: TIDAK BISA DIBAGI DENGAN 0'];
+        }
         const g = generateArray(jml);
         const div = Math.floor(jml / klm);
         const sisa = jml % klm;
@@ -82,20 +84,23 @@ const Shuffler = () => {
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
         if (link.download !== undefined) {
-          const url = URL.createObjectURL(blob);
-          link.setAttribute('href', url);
-          link.setAttribute('download', 'output.csv');
-          link.style.visibility = 'hidden';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'output.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
-      };
+    };
 
-      const isButtonDisabled = jmlOrang === '' || jmlPerKelompok === '';
+    const isButtonDisabled = jmlOrang === '' || jmlPerKelompok === '';
 
     return (
         <div className='md:p-10'>
+            <head>
+                <title>Shuffle</title>
+            </head>
             <h1 className='font-extrabold text-2xl md:text-4xl font-mono overflow-hidden p-5'>Let's Shuffle and Determine the Group</h1>
             <div className='p-2 md:p-10'>
                 <form onSubmit={handleSubmit}>
