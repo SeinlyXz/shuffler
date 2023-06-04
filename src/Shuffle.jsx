@@ -30,7 +30,7 @@ const Shuffler = () => {
         if (jml < klm) {
             return ['ERROR: TIDAK MUNGKIN DIBAGI KELOMPOK'];
         }
-        if (klm === 0) {
+        if (klm === 0 || jml === 0) {
             return ['ERROR: TIDAK BISA DIBAGI DENGAN 0'];
         }
         const g = generateArray(jml);
