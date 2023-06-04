@@ -95,21 +95,21 @@ const Shuffler = () => {
       const isButtonDisabled = jmlOrang === '' || jmlPerKelompok === '';
 
     return (
-        <div className='p-10'>
-            <h1 className='font-extrabold text-4xl font-mono'>Let's Shuffle and Determine the Group</h1>
-            <div className='p-10'>
+        <div className='md:p-10'>
+            <h1 className='font-extrabold text-2xl md:text-4xl font-mono overflow-hidden p-5'>Let's Shuffle and Determine the Group</h1>
+            <div className='p-2 md:p-10'>
                 <form onSubmit={handleSubmit}>
-                    <div className='flex flex-col justify-center mx-96'>
+                    <div className='flex flex-col justify-center md:mx-96 mx-10'>
                         <label> Jumlah orang: </label>
                         <input className='border border-gray-950 rounded-full px-5 py-2' type="number" value={jmlOrang} onChange={handleJmlOrangChange} />
                     </div>
                     <br />
-                    <div className='flex flex-col justify-center mx-96'>
+                    <div className='flex flex-col justify-center md:mx-96 mx-10'>
                         <label>Jumlah orang per-kelompok:</label>
                         <input className='border border-gray-950 rounded-full px-5 py-2' type="number" value={jmlPerKelompok} onChange={handleJmlPerKelompokChange} />
                     </div>
                     <br />
-                    <button className='bg-gray-800 text-white rounded-full px-3 py-2 hover:bg-gray-600' type="submit">Hitung</button>
+                    <button className='bg-gray-800 text-white rounded-full px-5 py-2 hover:bg-gray-600' type="submit">Go!</button>
                 </form>
             </div>
             <div>
