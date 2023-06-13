@@ -20,12 +20,16 @@ const Shuffler = () => {
         if (jmlOrang === '' || jmlPerKelompok === '') {
             setResults(['Usage: Masukkan jumlah orang dan jumlah orang per-kelompok']);
         } else {
-            const jml = parseInt(jmlOrang);
-            const klm = parseInt(jmlPerKelompok);
-            const res = hitung(jml, klm);
-            const choice = generateRandomNumber(jml);
-            setChoices(choice);
-            setResults(res);
+            if(jmlOrang < 0 || jmlPerKelompok < 0){
+                setResults(['Error: Tidak bisa dengan angka minus']);
+            } else {
+                const jml = parseInt(jmlOrang);
+                const klm = parseInt(jmlPerKelompok);
+                const res = hitung(jml, klm);
+                const choice = generateRandomNumber(jml);
+                setChoices(choice);
+                setResults(res);
+            }
         }
     };
 
