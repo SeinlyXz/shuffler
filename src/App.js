@@ -5,9 +5,6 @@ import Shuffler from './Shuffle';
 function App() {
   return (
     <div className="App">
-      <head>
-        <title>Shuffle</title>
-      </head>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
