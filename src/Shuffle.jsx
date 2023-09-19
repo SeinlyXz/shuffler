@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Shuffler = () => {
+
+    function Title(){
+        useEffect(() => {
+            document.title = "Shuffle";
+        }, []);
+    }
+    Title();
     const [jmlOrang, setJmlOrang] = useState('');
     const [jmlPerKelompok, setJmlPerKelompok] = useState('');
     const [results, setResults] = useState([]);
@@ -131,9 +138,6 @@ const Shuffler = () => {
 
     return (
         <div className='md:p-10'>
-            <head>
-                <title>Shuffle</title>
-            </head>
             <h1 className='font-extrabold text-2xl md:text-4xl font-mono overflow-hidden p-5'>Let's Shuffle and Determine the Group</h1>
             <div className='p-2 md:p-10'>
                 <form onSubmit={handleSubmit}>
