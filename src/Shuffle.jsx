@@ -53,9 +53,9 @@ const Shuffler = () => {
     const generateRandomNumber = (jml) => {
         let a = Math.floor(Math.random() * jml) + 1;
         if (a > 9) {
-            return [`Nomor yang terpilih adalah 22.61.02${a + 30}`];
+            return [`Nomor yang terpilih adalah urut absen ke-${a}`];
         } else {
-            return [`Nomor yang terpilih adalah 22.61.023${a}`];
+            return [`Nomor yang terpilih adalah urut absen ke-${a}`];
         }
     };
 
@@ -80,7 +80,11 @@ const Shuffler = () => {
             shuffleArray(kelompokG);
 
             for (let j = 0; j < kelompokG.length; j++) {
-                output.push(`[*] NIM-22.61.02${kelompokG[j]}`);
+                if(kelompokG[j] < 10){
+                    output.push(`[*] Urut Absen ke-0${kelompokG[j]}`);
+                } else {
+                    output.push(`[*] Urut Absen ke-${kelompokG[j]}`);
+                }
             }
 
             if (i + klm >= g.length) {
@@ -94,7 +98,7 @@ const Shuffler = () => {
 
     const generateArray = (jml) => {
         const g = [];
-        for (let i = 31; i <= jml + 30; i++) {
+        for (let i = 1; i <= jml; i++) {
             g.push(i);
         }
         let d = shuffleArray(g);
@@ -167,13 +171,15 @@ const Shuffler = () => {
                     ) : (
                         <ul key={index}>
                             {result.split('\n').map((item, i) => (
-                                <li key={i}>{item}</li>
+                                <li className='text-slate-800' key={i}>{item}</li>
                             ))}
                         </ul>
                     )
                 ))}
             </div>
-            <button onClick={isDownloadButtonDisabled ? undefined : downloadCSV} disabled={isButtonDisabled} className={`px-3 py-2 hover:bg-slate-700 hover:text-white rounded-full ${isButtonDisabled ? "text-white mt-96" : "text-black mt-5 border border-black"}`}>Download</button>
+            <div className="mb-5">
+                <button onClick={isDownloadButtonDisabled ? undefined : downloadCSV} disabled={isButtonDisabled} className={`px-3 py-2 hover:bg-slate-700 hover:text-white rounded-full ${isButtonDisabled ? "text-white mt-96" : "text-black mt-5 border border-black"}`}>Download</button>
+            </div>
         </div>
     );
 };
