@@ -20,36 +20,39 @@ const Shuffler = () => {
         if (jmlOrang === '' || jmlPerKelompok === '') {
             setResults(['Usage: Masukkan jumlah orang dan jumlah orang per-kelompok']);
         } else {
-            if(jmlOrang < 0 || jmlPerKelompok < 0){
+            if (jmlOrang < 0 || jmlPerKelompok < 0) {
                 setResults(['Error: Tidak bisa dengan angka minus']);
             } else {
                 const jml = parseInt(jmlOrang);
                 const klm = parseInt(jmlPerKelompok);
-                const res = hitung(jml, klm);
-                const choice = generateRandomNumber(jml);
-                setChoices(choice);
-                setResults(res);
+                if (jml < klm) {
+                    setResults(['Error: Tidak mungkin dibagi kelompok']);
+                } else if (klm === 0 || jml === 0) {
+                    setResults(['Error: Tidak bisa dibagi dengan 0']);
+                } else if (klm > 1000 || jml > 1000) {
+                    setResults(['Error: Tidak bisa lebih dari 1000']);
+                } else {
+                    const res = hitung(jml, klm);
+                    if (jml != 0, 1) {
+                        const choice = generateRandomNumber(jml);
+                        setChoices(choice);
+                    }
+                    setResults(res);
+                }
             }
         }
     };
 
     const generateRandomNumber = (jml) => {
-        let a = Math.floor(Math.random() * jml)+1;
-        if(a > 9){
-            return [`Nomor yang terpilih adalah 22.61.02${a+30}`];
+        let a = Math.floor(Math.random() * jml) + 1;
+        if (a > 9) {
+            return [`Nomor yang terpilih adalah 22.61.02${a + 30}`];
         } else {
             return [`Nomor yang terpilih adalah 22.61.023${a}`];
         }
     };
 
     const hitung = (jml, klm) => {
-        if (jml < klm) {
-            return ['Error: Tidak mungkin dibagi kelompok'];
-        } else if (klm === 0 || jml === 0) {
-            return ['Error: Tidak bisa dibagi dengan 0'];
-        } else if (klm > 1000 || jml > 1000) {
-            return ['Error: Tidak bisa lebih dari 1000'];
-        }
 
         const g = generateArray(jml);
         const div = Math.floor(jml / klm);
@@ -87,15 +90,27 @@ const Shuffler = () => {
         for (let i = 31; i <= jml + 30; i++) {
             g.push(i);
         }
-        return g;
+        let d = shuffleArray(g);
+        return d;
     };
 
-    const shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+    function shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+
+        // While there remain elements to shuffle.
+        while (currentIndex > 0) {
+
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
         }
-    };
+
+        return array;
+    }
 
     const downloadCSV = () => {
         const csvContent = results.join('\n');
